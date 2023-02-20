@@ -1,1 +1,1 @@
-sudo dnf install -y pavucontrol discord
+sudo dnf install -y pavucontrol discord bitwarden
