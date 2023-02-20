@@ -2,6 +2,10 @@ dotfiles_folder=$HOME"/projects/dotfiles"
 
 programs=()
 
+programs+=(zprofile)
+source_zprofile=$dotfiles_folder/macos/zsh/zprofile
+target_zprofile=$HOME/.zprofile
+
 programs+=(git)
 source_git=$dotfiles_folder/common/git/gitconfig
 target_git=$HOME/.gitconfig
