@@ -1,4 +1,3 @@
-
 if [[ $(command -v brew) == "" ]]; then
 	echo "Installing Hombrew"
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -11,8 +10,10 @@ fi
 
 
 brew install neovim
+brew install ripgrep
 brew install tmux
 brew tap wez/wezterm
 brew install --cask wez/wezterm/wezterm
 brew install --cask google-chrome
 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
