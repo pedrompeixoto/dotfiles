@@ -1,4 +1,5 @@
 dotfiles_folder=$HOME"/projects/dotfiles"
+config_folder=$dotfiles_folder"/configs"
 
 programs=()
 
@@ -7,15 +8,15 @@ source_zprofile=$dotfiles_folder/macos/zsh/zprofile
 target_zprofile=$HOME/.zprofile
 
 programs+=(git)
-source_git=$dotfiles_folder/common/git/gitconfig
+source_git=$config_folder/git/gitconfig
 target_git=$HOME/.gitconfig
 
 programs+=(nvim)
-source_nvim=$dotfiles_folder/common/nvim
+source_nvim=$config_folder/nvim
 target_nvim=$HOME/.config/nvim
 
 programs+=(wezterm)
-source_wezterm=$dotfiles_folder/common/wezterm
+source_wezterm=$config_folder/wezterm
 target_wezterm=$HOME/.config/wezterm
 
 for program in ${programs[@]}

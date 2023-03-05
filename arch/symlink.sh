@@ -1,21 +1,18 @@
 dotfiles_folder=$HOME"/projects/dotfiles"
+config_folder=$dotfiles_folder"/configs"
 
 programs=()
 
 programs+=(git)
-source_git=$dotfiles_folder/common/git/gitconfig
+source_git=$config_folder/git/gitconfig
 target_git=$HOME/.gitconfig
 
-programs+=(i3)
-source_i3=$dotfiles_folder/common/i3
-target_i3=$HOME/.config/i3
-
 programs+=(nvim)
-source_nvim=$dotfiles_folder/common/nvim
+source_nvim=$config_folder/nvim
 target_nvim=$HOME/.config/nvim
 
 programs+=(wezterm)
-source_wezterm=$dotfiles_folder/common/wezterm
+source_wezterm=$config_folder/wezterm
 target_wezterm=$HOME/.config/wezterm
 
 for program in ${programs[@]}
