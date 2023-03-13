@@ -1,20 +1,20 @@
-$dotfilesFolder= "$env:USERPROFILE\dotfiles"
+$dotfilesFolder= $env:USERPROFILE + "\dotfiles"
 
 $programs = @(
     [pscustomobject]@{
         name = "neovim"
-        source_path = $dotfilesFolder\common\nvim
-        target_path = $env:LOCALAPPDATA\nvim 
+        source_path = $dotfilesFolder + "\configs\nvim"
+        target_path = $env:LOCALAPPDATA + "\nvim"
     }
     [pscustomobject]@{
         name = "powershell profile"
-        source_path = $dotfilesFolder\windows\powershell\profile_work.ps1
-        target_path = $env:USERPROFILE\Documents\PowerShell\Microsoft.PowerShell_profile.ps1 
+        source_path = $dotfilesFolder + "\windows\powershell\profile_work.ps1"
+        target_path = $env:USERPROFILE + "\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
     }
     [pscustomobject]@{
         name = "windows terminal"
-        source_path = $dotfilesFolder\windows\windows_terminal\settings.json 
-        target_path = $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json 
+        source_path = $dotfilesFolder + "\windows\windows_terminal\settings.json"
+        target_path = $env:LOCALAPPDATA + "\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
     }
 )
 
