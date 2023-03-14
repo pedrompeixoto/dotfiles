@@ -5,7 +5,7 @@ vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 vim.keymap.set("i", "jj", "<Esc>", opts)
 
-function toggleLine()
+local function toggleLine()
     vim.o.relativenumber = not vim.o.relativenumber
 end
 
