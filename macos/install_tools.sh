@@ -9,14 +9,16 @@ else
 fi
 
 
-brew install neovim
-brew install ripgrep
-brew install tmux
+brew install neovim \
+    ripgrep \
+    tmux \
+    docker docker-compose
+
 brew tap wez/wezterm
-brew install --cask wez/wezterm/wezterm
-brew install --cask google-chrome
-brew install --cask bitwarden
-brew install --cask spotify
-brew install --cask discord
+brew install --cask wez/wezterm/wezterm \
+    google-chrome \
+    bitwarden \
+    spotify \
+    discord \
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
