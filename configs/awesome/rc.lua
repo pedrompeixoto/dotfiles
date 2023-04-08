@@ -152,7 +152,7 @@ local tasklist_buttons = gears.table.join(
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
-        local wallpaper = "~/Images/Wallpapers/wallpaper.jpg"
+        local wallpaper = "/home/pedro/Images/Wallpapers/wallpaper.jpg"
         -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
@@ -232,6 +232,9 @@ kbdcfg = {}
 kbdcfg.cmd = "setxkbmap"
 kbdcfg.layouts = { 'us colemak', 'us intl' }
 kbdcfg.current = 1
+
+awful.spawn(kbdcfg.cmd .. " " .. kbdcfg.layouts[kbdcfg.current])
+
 kbdcfg.switch = function ()
     kbdcfg.current = kbdcfg.current % #(kbdcfg.layouts) + 1
     awful.spawn(kbdcfg.cmd .. " " .. kbdcfg.layouts[kbdcfg.current])
