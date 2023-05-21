@@ -12,6 +12,11 @@ $programs = @(
         target_path = $env:LOCALAPPDATA + "\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
     }
     [pscustomobject]@{
+        name = "powershell profile"
+        source_path = $dotfilesFolder + "\windows\powershell\profile_personal.ps1"
+        target_path = $env:USERPROFILE + "\Documents\PowerShell\Microsoft.PowerShell_profile.ps1"
+    }
+    [pscustomobject]@{
         name = "git config"
         source_path = $dotfilesFolder + "\configs\git\gitconfig"
         target_path = $env:USERPROFILE + "\.gitconfig"
