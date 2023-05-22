@@ -3,7 +3,7 @@ $dotfilesFolder= $env:USERPROFILE + "\dotfiles"
 $programs = @(
     [pscustomobject]@{
         name = "neovim"
-        source_path = $dotfilesFolder + "\configs\nvim"
+        source_path = $dotfilesFolder + "\configs\nvimV2"
         target_path = $env:LOCALAPPDATA + "\nvim"
     }
     [pscustomobject]@{

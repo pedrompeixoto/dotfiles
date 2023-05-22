@@ -19,3 +19,6 @@ vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 
 vim.opt.termguicolors = true;
+
+-- makes netrw open files to the right instead of left
+vim.g.netrw_altv = 1
