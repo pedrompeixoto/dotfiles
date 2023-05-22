@@ -39,7 +39,7 @@
             "colorScheme": "Tokyo Night",
             "font": 
             {
-                "face": "LiterationMono NFM",
+                "face": "LiterationMono Nerd Font",
                 "size": 14.0
             },
             "padding": "0",
@@ -64,22 +64,22 @@
                 "source": "Windows.Terminal.Azure"
             },
             {
-                "guid": "{b442a4c6-8b70-5626-8b64-5c89eb1be15a}",
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore"
+            },
+            {
+                "guid": "{f909e08b-d283-57f1-a1f7-c4090cc04e53}",
                 "hidden": false,
                 "name": "Developer Command Prompt for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
-                "guid": "{f0c15cf9-ff2f-58c6-a721-1617fb1dab28}",
+                "guid": "{dabce45b-d5c2-5db6-9c65-8ab961a55a19}",
                 "hidden": false,
                 "name": "Developer PowerShell for VS 2022",
                 "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-                "hidden": false,
-                "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore"
             }
         ]
     },

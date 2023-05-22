@@ -12,7 +12,7 @@ source_git=$config_folder/git/gitconfig
 target_git=$HOME/.gitconfig
 
 programs+=(nvim)
-source_nvim=$config_folder/nvim
+source_nvim=$config_folder/nvimV2
 target_nvim=$HOME/.config/nvim
 
 programs+=(wezterm)
