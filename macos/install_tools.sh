@@ -12,7 +12,8 @@ fi
 brew install neovim \
     ripgrep \
     tmux \
-    docker docker-compose
+    docker docker-compose \
+    cmake
 
 brew tap wez/wezterm
 brew install --cask wez/wezterm/wezterm \
