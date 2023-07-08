@@ -8,16 +8,12 @@ source_git=$config_folder/git/gitconfig
 target_git=$HOME/.gitconfig
 
 programs+=(nvim)
-source_nvim=$config_folder/nvim
+source_nvim=$config_folder/nvimV2
 target_nvim=$HOME/.config/nvim
 
 programs+=(wezterm)
 source_wezterm=$config_folder/wezterm
 target_wezterm=$HOME/.config/wezterm
-
-programs+=(awesomewm)
-source_awesomewm=$config_folder/awesome
-target_awesomewm=$HOME/.config/awesome
 
 for program in ${programs[@]}
 do
