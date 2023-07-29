@@ -217,7 +217,7 @@ vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = tr
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Esc jj
-vim.keymap.set('i', 'jj', '<Esc>', { silent = true })
+vim.keymap.set('i', 'jk', '<Esc>', { silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
