@@ -14,3 +14,5 @@ foreach {
 }
 popd
 Write-Host "`nVisual Studio 2022 Command Prompt variables set." -ForegroundColor Yellow
+
+$PSStyle.FileInfo.Directory = ""
