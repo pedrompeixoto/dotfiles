@@ -48,7 +48,6 @@ require('lazy').setup({
 			-- Useful status updates for LSP
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			{ 'j-hui/fidget.nvim', tag = "legacy", opts = {} },
-			{ 'j-hui/fidget.nvim', opts = {} },
 
 			-- Additional lua configuration, makes nvim stuff amazing!
 			'folke/neodev.nvim',
@@ -83,11 +82,20 @@ require('lazy').setup({
 		},
 	},
 
+	-- {
+	-- 	'folke/tokyonight.nvim',
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.cmd.colorscheme 'tokyonight-night'
+	-- 	end,
+	-- },
+
 	{
-		'folke/tokyonight.nvim',
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme 'tokyonight-night'
+			vim.cmd.colorscheme 'catppuccin'
 		end,
 	},
 
@@ -98,7 +106,7 @@ require('lazy').setup({
 		opts = {
 			options = {
 				icons_enabled = false,
-				theme = 'tokyonight',
+				theme = 'catppuccin',
 				component_separators = '|',
 				section_separators = '',
 			},
