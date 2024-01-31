@@ -13,5 +13,11 @@ return {
         config = function()
             vim.cmd([[colorscheme rose-pine]])
         end
+    },
+    { 
+        'morhetz/gruvbox',
+        config = function()
+            --vim.cmd([[colorscheme gruvbox]])
+        end
     }
 }
