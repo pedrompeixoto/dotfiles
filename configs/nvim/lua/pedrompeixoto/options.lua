@@ -12,3 +12,8 @@ vim.wo.relativenumber = true
 vim.o.clipboard = 'unnamedplus'
 
 vim.o.termguicolors = true
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+
+vim.opt.colorcolumn = "80"
