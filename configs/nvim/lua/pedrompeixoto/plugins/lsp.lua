@@ -6,6 +6,7 @@ return {
         -- Setup language servers.
         local lspconfig = require('lspconfig')
         lspconfig.tsserver.setup {}
+        lspconfig.astro.setup {}
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer

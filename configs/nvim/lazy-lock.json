@@ -5,6 +5,7 @@
   "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
   "neoformat": { "branch": "master", "commit": "b8e0baf965d2fbb173aabe3d847538744c0e321b" },
   "nvim-lspconfig": { "branch": "master", "commit": "f12f1b9e877b1e6e2ef7eae1a524d8253af4243d" },
+  "nvim-treesitter": { "branch": "master", "commit": "aa805bf22f4a2fb9f429de3a22e9dc45ec444833" },
   "nvim-web-devicons": { "branch": "master", "commit": "313d9e7193354c5de7cdb1724f9e2d3f442780b0" },
   "plenary.nvim": { "branch": "master", "commit": "55d9fe89e33efd26f532ef20223e5f9430c8b0c0" },
   "rose-pine": { "branch": "main", "commit": "c01a4a61020ddcfd3448fbb9cf11309f336bfb7b" },
