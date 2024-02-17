@@ -1,8 +1,17 @@
 return {
-    'sbdchd/neoformat',
+    { 
+        'sbdchd/neoformat',
 
-    config = function()
-        vim.g.neoformat_try_node_exe = 1
-        vim.keymap.set('n', '<leader>F', ':Neoformat <CR>', { noremap = true, silent = true })
-    end
+        config = function()
+            vim.g.neoformat_try_node_exe = 1
+            vim.keymap.set('n', '<leader>F', ':Neoformat <CR>', { noremap = true, silent = true })
+        end
+    },
+    {
+        'numToStr/Comment.nvim',
+        opts = {
+            -- add any options here
+        },
+        lazy = false,
+    }
 }
