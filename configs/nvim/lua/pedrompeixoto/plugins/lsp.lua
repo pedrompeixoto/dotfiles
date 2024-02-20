@@ -9,6 +9,8 @@ return {
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
+        "williamboman/mason.nvim",    
+        "williamboman/mason-lspconfig.nvim",
     },
 
     config = function() 
@@ -39,8 +41,10 @@ return {
 
         -- Setup language servers.
         local lspconfig = require('lspconfig')
-        lspconfig.tsserver.setup {}
-        lspconfig.astro.setup {}
+        require("mason").setup()
+        require("mason-lspconfig").setup({
+            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls" },
+        })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
