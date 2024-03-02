@@ -1,4 +1,3 @@
-
 return {
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -9,13 +8,13 @@ return {
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
-        "williamboman/mason.nvim",    
+        "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
 
-    config = function() 
+    config = function()
         local cmp = require('cmp')
-        local cmp_lsp = require("cmp_nvim_lsp")
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
@@ -46,10 +45,17 @@ return {
             ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls" },
         })
 
-        lspconfig.lua_ls.setup({})
-        lspconfig.tsserver.setup({})
-        lspconfig.angularls.setup({})
-        lspconfig.cssls.setup({})
+        lspconfig.lua_ls.setup({
+            capabilities = capabilities
+            diagnostics = {
+                globals = {
+                    "vim"
+                }
+            },
+        })
+        lspconfig.tsserver.setup({ capabilities = capabilities })
+        lspconfig.angularls.setup({ capabilities = capabilities })
+        lspconfig.cssls.setup({ capabilities = capabilities })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
