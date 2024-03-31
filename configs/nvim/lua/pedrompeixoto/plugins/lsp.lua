@@ -46,7 +46,7 @@ return {
         })
 
         lspconfig.lua_ls.setup({
-            capabilities = capabilities
+            capabilities = capabilities,
             diagnostics = {
                 globals = {
                     "vim"
