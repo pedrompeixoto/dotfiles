@@ -46,7 +46,7 @@ return {
         local lspconfig = require('lspconfig')
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls" },
+            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls", "html" },
         })
 
         lspconfig.lua_ls.setup({
