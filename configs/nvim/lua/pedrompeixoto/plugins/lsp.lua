@@ -6,13 +6,17 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
+        {
+            "L3MON4D3/LuaSnip",
+            dependencies = { "rafamadriz/friendly-snippets" },
+        },
         "saadparwaiz1/cmp_luasnip",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
 
     config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
         local cmp = require('cmp')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -60,6 +64,7 @@ return {
         lspconfig.tsserver.setup({ capabilities = capabilities })
         lspconfig.angularls.setup({ capabilities = capabilities })
         lspconfig.cssls.setup({ capabilities = capabilities })
+        lspconfig.html.setup({ capabilities = capabilities })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
