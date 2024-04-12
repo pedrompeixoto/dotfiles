@@ -6,13 +6,17 @@ return {
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
+        {
+            "L3MON4D3/LuaSnip",
+            dependencies = { "rafamadriz/friendly-snippets" },
+        },
         "saadparwaiz1/cmp_luasnip",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
 
     config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
         local cmp = require('cmp')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -27,7 +31,7 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
@@ -42,16 +46,20 @@ return {
         local lspconfig = require('lspconfig')
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls" },
+            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls", "html" },
         })
 
         lspconfig.lua_ls.setup({
-            capabilities = capabilities,
-            diagnostics = {
-                globals = {
-                    "vim"
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {
+                            "vim"
+                        }
+                    },
                 }
             },
+            capabilities = capabilities,
         })
 
         lspconfig.tsserver.setup({ capabilities = capabilities })
