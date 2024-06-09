@@ -46,7 +46,7 @@ return {
         local lspconfig = require('lspconfig')
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls", "html" },
+            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls", "html", "tailwindcss" },
         })
 
         lspconfig.lua_ls.setup({
@@ -66,6 +66,7 @@ return {
         lspconfig.angularls.setup({ capabilities = capabilities })
         lspconfig.cssls.setup({ capabilities = capabilities })
         lspconfig.html.setup({ capabilities = capabilities })
+        lspconfig.tailwindcss.setup({ capabilities = capabilities })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
