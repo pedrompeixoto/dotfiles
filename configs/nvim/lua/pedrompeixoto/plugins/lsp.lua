@@ -16,6 +16,7 @@ return {
     },
 
     config = function()
+        local luasnip = require('luasnip')
         require("luasnip.loaders.from_vscode").lazy_load()
         local cmp = require('cmp')
         local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -25,12 +26,30 @@ return {
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                    luasnip.lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-p>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
+                ['<C-n>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif luasnip.expand_or_jumpable() then
+                        luasnip.expand_or_jump()
+                    elseif has_words_before() then
+                        cmp.complete()
+                    else
+                        fallback()
+                    end
+                end, { "i", "s" }),
                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
@@ -46,7 +65,7 @@ return {
         local lspconfig = require('lspconfig')
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls", "html", "tailwindcss" },
+            ensure_installed = { "lua_ls", "tsserver", "angularls", "cssls", "html", "tailwindcss", 'jdtls' },
         })
 
         lspconfig.lua_ls.setup({
@@ -67,6 +86,7 @@ return {
         lspconfig.cssls.setup({ capabilities = capabilities })
         lspconfig.html.setup({ capabilities = capabilities })
         lspconfig.tailwindcss.setup({ capabilities = capabilities })
+        lspconfig.jdtls.setup({ capabilities = capabilities })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
