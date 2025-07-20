@@ -1,1 +1,5 @@
-require("pedrompeixoto")
+require("options")
+require("keymaps")
+require("plugins")
+require("lsp")
+require("ui")
