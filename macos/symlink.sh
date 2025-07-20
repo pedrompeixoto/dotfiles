@@ -23,6 +23,10 @@ programs+=(tmux)
 source_tmux=$config_folder/tmux
 target_tmux=$HOME/.config/tmux
 
+programs+=(ssh)
+source_ssh=$config_folder/ssh/config
+target_ssh=$HOME/.ssh/config
+
 for program in ${programs[@]}
 do
 	source=source_${program}
