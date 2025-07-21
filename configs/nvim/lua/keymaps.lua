@@ -11,3 +11,14 @@ keymap.set("n", "<leader>f", function()
 end, { desc = "Format file with conform" })
 keymap.set('n', '<leader>d', vim.diagnostic.open_float)
 keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode with jk" })
+keymap.set("n", "<leader>nh", ":nohlsearch<CR>")
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local bufnr = args.buf -- buffer number
+    local opts = { noremap=true, silent=true, buffer=bufnr }
+    keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+  end,
+})
