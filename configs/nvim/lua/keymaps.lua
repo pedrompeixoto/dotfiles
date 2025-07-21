@@ -1,3 +1,5 @@
+require('utils')
+
 vim.g.mapleader = " "
 
 local keymap = vim.keymap
