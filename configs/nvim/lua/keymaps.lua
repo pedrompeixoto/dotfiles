@@ -15,6 +15,12 @@ keymap.set('n', '<leader>d', vim.diagnostic.open_float)
 keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode with jk" })
 keymap.set("n", "<leader>nh", ":nohlsearch<CR>")
 
+if IsReactNativeProj() then
+  keymap.set("n", "<leader>tn", function()
+    ToggleNativeFile()
+  end, { desc = "Toggle between native and non-native file for react native projects" })
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local bufnr = args.buf -- buffer number
