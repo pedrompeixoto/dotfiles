@@ -12,7 +12,7 @@ require("lazy").setup({
     {
         "mason-org/mason-lspconfig.nvim",
         opts = {
-            ensure_installed = { "lua_ls", "ts_ls" },
+            ensure_installed = { "lua_ls", "ts_ls", "eslint_d" },
         },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
