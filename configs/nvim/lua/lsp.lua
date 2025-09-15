@@ -23,7 +23,7 @@ require("lint").linters_by_ft = {
     typescriptreact = { "eslint_d" },
 }
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost", 'BufEnter', 'BufWinEnter' }, {
   callback = function()
     require("lint").try_lint()
   end,
