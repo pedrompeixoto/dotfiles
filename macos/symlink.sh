@@ -23,6 +23,10 @@ programs+=(tmux)
 source_tmux=$config_folder/tmux
 target_tmux=$HOME/.config/tmux
 
+programs+=(ghostty)
+source_ghostty=$config_folder/ghostty
+target_ghostty=$HOME/.config/ghostty
+
 programs+=(ssh)
 source_ssh=$config_folder/ssh/config
 target_ssh=$HOME/.ssh/config
