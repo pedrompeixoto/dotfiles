@@ -99,6 +99,7 @@ symlink_file() {
 
 # Symlink nvim config
 symlink_config "nvim"
+symlink_config "ghostty"
 
 # Symlink git config
 symlink_file "${CONFIG_SOURCE}/git/gitconfig" "${HOME}/.gitconfig" "gitconfig"
