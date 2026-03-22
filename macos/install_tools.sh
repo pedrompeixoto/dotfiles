@@ -41,6 +41,7 @@ install 1password
 install asdf
 install neovim
 install ghostty
+install tmux
 install brave-browser
 
 # Add asdf to .zshrc PATH
