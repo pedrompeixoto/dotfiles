@@ -9,39 +9,39 @@ echo "Checking system..."
 
 # Ensure macOS
 if [[ "$OSTYPE" != "darwin"* ]]; then
-    echo "${RED}Error: This script only supports macOS.${NC}"
+    printf "%bError: This script only supports macOS.%b\n" "$RED" "$NC"
     exit 1
 fi
 
 # Ensure Apple Silicon (arm64)
 ARCH=$(uname -m)
 if [[ "$ARCH" != "arm64" ]]; then
-    echo "${RED}Error: This script only supports Apple Silicon Macs (arm64).${NC}"
+    printf "%bError: This script only supports Apple Silicon Macs (arm64).%b\n" "$RED" "$NC"
     exit 1
 fi
 
-echo "${GREEN}Apple Silicon macOS detected.${NC}"
+printf "%bApple Silicon macOS detected.%b\n" "$GREEN" "$NC"
 
 # Check if Homebrew is installed
 if command -v brew >/dev/null 2>&1; then
-    echo "${GREEN}Homebrew is already installed.${NC}"
+    printf "%bHomebrew is already installed.%b\n" "$GREEN" "$NC"
     exit 0
 fi
 
-echo "${YELLOW}Homebrew not found. Installing...${NC}"
+printf "%bHomebrew not found. Installing...%b\n" "$YELLOW" "$NC"
 
 # Install Homebrew (official script)
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Verify installation
 if [[ -x "/opt/homebrew/bin/brew" ]]; then
-    echo "${GREEN}Homebrew installed successfully!${NC}"
+    printf "%bHomebrew installed successfully!%b\n" "$GREEN" "$NC"
 else
-    echo "${RED}Error: Homebrew installation failed.${NC}"
+    printf "%bError: Homebrew installation failed.%b\n" "$RED" "$NC"
     exit 1
 fi
 
 # Add Homebrew to PATH for current session
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-echo "${GREEN}Setup complete. Homebrew is ready to use.${NC}"
+printf "%bSetup complete. Homebrew is ready to use.%b\n" "$GREEN" "$NC"

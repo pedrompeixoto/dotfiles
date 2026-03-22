@@ -30,16 +30,16 @@ handle_existing_target() {
 
     if [ -L "$target_path" ]; then
         rm "$target_path"
-        echo "${YELLOW}! Removed existing symlink: ${target_path}${NC}"
+        printf "%b! Removed existing symlink: %s%b\n" "$YELLOW" "$target_path" "$NC"
         return 0
     fi
 
-    echo "${RED}✗ ${target_path} exists and is not a symlink${NC}"
+    printf "%b✗ %s%b\n" "$RED" "$target_path exists and is not a symlink" "$NC"
     read -p "  Do you want to remove it? (y/N) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         rm -rf "$target_path"
-        echo "${YELLOW}! Removed: ${target_path}${NC}"
+        printf "%b! Removed: %s%b\n" "$YELLOW" "$target_path" "$NC"
         return 0
     fi
     return 1
@@ -54,22 +54,22 @@ create_symlink() {
 
     # Check if source exists
     if [ "$check_type" = "file" ] && [ ! -f "$source_path" ]; then
-        echo "${RED}✗ Source not found: ${source_path}${NC}"
+        printf "%b✗ Source not found: %s%b\n" "$RED" "$source_path" "$NC"
         return 1
     elif [ "$check_type" = "dir" ] && [ ! -d "$source_path" ]; then
-        echo "${RED}✗ Source not found: ${source_path}${NC}"
+        printf "%b✗ Source not found: %s%b\n" "$RED" "$source_path" "$NC"
         return 1
     fi
 
     # Handle existing target
     handle_existing_target "$target_path" || {
-        echo "${RED}✗ Skipped symlinking ${display_name}${NC}"
+        printf "%b✗ Skipped symlinking %s%b\n" "$RED" "$display_name" "$NC"
         return 1
     }
 
     # Create symlink
     ln -s "$source_path" "$target_path"
-    echo "${GREEN}✓ Symlinked ${display_name}${NC}"
+    printf "%b✓ Symlinked %s%b\n" "$GREEN" "$display_name" "$NC"
     echo "  ${source_path} -> ${target_path}"
 }
 
@@ -82,7 +82,7 @@ symlink_config() {
     # Create .config directory if it doesn't exist
     if [ ! -d "${HOME}/.config" ]; then
         mkdir -p "${HOME}/.config"
-        echo "${GREEN}✓ Created ${HOME}/.config${NC}"
+        printf "%b✓ Created %s%b\n" "$GREEN" "${HOME}/.config" "$NC"
     fi
 
     create_symlink "$source_path" "$target_path" "$app_name" "dir"
@@ -106,4 +106,4 @@ symlink_config "tmux"
 symlink_file "${CONFIG_SOURCE}/git/gitconfig" "${HOME}/.gitconfig" "gitconfig"
 
 echo ""
-echo "${GREEN}✓ Done!${NC}"
+printf "%b✓ Done!%b\n" "$GREEN" "$NC"

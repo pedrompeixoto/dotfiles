@@ -4,8 +4,8 @@ GREEN="\033[0;32m"
 RED="\033[0;31m"
 NC="\033[0m"
 
-ok() { echo "${GREEN}[OK]${NC} $1"; }
-fail() { echo "${RED}[ERR]${NC} $1"; }
+ok() { printf "%b[OK]%b %s\n" "$GREEN" "$NC" "$1"; }
+fail() { printf "%b[ERR]%b %s\n" "$RED" "$NC" "$1"; }
 
 # Install Homebrew if missing
 if ! command -v brew >/dev/null 2>&1; then

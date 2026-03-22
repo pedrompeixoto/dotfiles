@@ -67,31 +67,33 @@ log "SSH public key loaded (${#sslpub} characters)"
 # Get GitHub token
 echo
 log "Adding SSH key to GitHub..."
-echo -n "GitHub personal access token (will not be echoed): "
+echo -n "GitHub personal access token (will not be echoed, press Enter to skip): "
 read -s github_token
 echo
 
 if [ -z "$github_token" ]; then
-  error "GitHub token cannot be empty"
-fi
-
-# Add SSH key to GitHub
-log "Uploading SSH key to GitHub API..."
-response=$(curl -s -w "\n%{http_code}" \
-  -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer ${github_token}" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/user/keys \
-  -d "{\"title\":\"skyvalley key\",\"key\":\"${sslpub}\"}")
-
-http_code=$(echo "$response" | tail -1)
-body=$(echo "$response" | sed '$d')
-
-if [ "$http_code" = "201" ]; then
-  log "✓ SSH key successfully added to GitHub"
+  log "Skipping SSH key upload (no token provided)"
 else
-  error "Failed to add SSH key to GitHub (HTTP $http_code): $body"
+  # Add SSH key to GitHub
+  log "Uploading SSH key to GitHub API..."
+  response=$(curl -s -w "\n%{http_code}" \
+    -X POST \
+    -H "Accept: application/vnd.github+json" \
+    -H "Authorization: Bearer ${github_token}" \
+    -H "X-GitHub-Api-Version: 2022-11-28" \
+    https://api.github.com/user/keys \
+    -d "{\"title\":\"skyvalley key\",\"key\":\"${sslpub}\"}")
+
+  http_code=$(echo "$response" | tail -1)
+  body=$(echo "$response" | sed '$d')
+
+  if [ "$http_code" = "201" ]; then
+    log "✓ SSH key successfully added to GitHub"
+  elif [ "$http_code" = "422" ]; then
+    log "SSH key already exists on GitHub (skipping)"
+  else
+    error "Failed to add SSH key to GitHub (HTTP $http_code): $body"
+  fi
 fi
 
 log "macOS configuration complete!"
