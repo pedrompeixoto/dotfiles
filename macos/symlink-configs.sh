@@ -19,17 +19,65 @@ echo "🔗 Symlinking dotfiles configurations..."
 echo "Source: ${CONFIG_SOURCE}"
 echo ""
 
-# Function to create symlink
+# Helper function to handle existing target (symlink or file/dir)
+handle_existing_target() {
+    local target_path=$1
+    local is_dir=$2
+
+    if [ ! -e "$target_path" ]; then
+        return 0
+    fi
+
+    if [ -L "$target_path" ]; then
+        rm "$target_path"
+        echo -e "${YELLOW}! Removed existing symlink: ${target_path}${NC}"
+        return 0
+    fi
+
+    echo -e "${RED}✗ ${target_path} exists and is not a symlink${NC}"
+    read -p "  Do you want to remove it? (y/N) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        rm -rf "$target_path"
+        echo -e "${YELLOW}! Removed: ${target_path}${NC}"
+        return 0
+    fi
+    return 1
+}
+
+# Generic symlink creation function
+create_symlink() {
+    local source_path=$1
+    local target_path=$2
+    local display_name=$3
+    local check_type=$4  # "file" or "dir"
+
+    # Check if source exists
+    if [ "$check_type" = "file" ] && [ ! -f "$source_path" ]; then
+        echo -e "${RED}✗ Source not found: ${source_path}${NC}"
+        return 1
+    elif [ "$check_type" = "dir" ] && [ ! -d "$source_path" ]; then
+        echo -e "${RED}✗ Source not found: ${source_path}${NC}"
+        return 1
+    fi
+
+    # Handle existing target
+    handle_existing_target "$target_path" || {
+        echo -e "${RED}✗ Skipped symlinking ${display_name}${NC}"
+        return 1
+    }
+
+    # Create symlink
+    ln -s "$source_path" "$target_path"
+    echo -e "${GREEN}✓ Symlinked ${display_name}${NC}"
+    echo "  ${source_path} -> ${target_path}"
+}
+
+# Function to create symlink for directories
 symlink_config() {
     local app_name=$1
     local source_path="${CONFIG_SOURCE}/${app_name}"
     local target_path="${HOME}/.config/${app_name}"
-
-    # Check if source exists
-    if [ ! -d "$source_path" ]; then
-        echo -e "${RED}✗ Source not found: ${source_path}${NC}"
-        return 1
-    fi
 
     # Create .config directory if it doesn't exist
     if [ ! -d "${HOME}/.config" ]; then
@@ -37,35 +85,23 @@ symlink_config() {
         echo -e "${GREEN}✓ Created ${HOME}/.config${NC}"
     fi
 
-    # Handle existing target
-    if [ -e "$target_path" ]; then
-        if [ -L "$target_path" ]; then
-            # It's a symlink, remove it
-            rm "$target_path"
-            echo -e "${YELLOW}! Removed existing symlink: ${target_path}${NC}"
-        else
-            # It's a real directory/file
-            echo -e "${RED}✗ ${target_path} exists and is not a symlink${NC}"
-            read -p "  Do you want to remove it? (y/N) " -n 1 -r
-            echo
-            if [[ $REPLY =~ ^[Yy]$ ]]; then
-                rm -rf "$target_path"
-                echo -e "${YELLOW}! Removed: ${target_path}${NC}"
-            else
-                echo -e "${RED}✗ Skipped symlinking ${app_name}${NC}"
-                return 1
-            fi
-        fi
-    fi
+    create_symlink "$source_path" "$target_path" "$app_name" "dir"
+}
 
-    # Create symlink
-    ln -s "$source_path" "$target_path"
-    echo -e "${GREEN}✓ Symlinked ${app_name}${NC}"
-    echo "  ${source_path} -> ${target_path}"
+# Function to create symlink for individual files
+symlink_file() {
+    local source_file=$1
+    local target_file=$2
+    local display_name=$3
+
+    create_symlink "$source_file" "$target_file" "$display_name" "file"
 }
 
 # Symlink nvim config
 symlink_config "nvim"
+
+# Symlink git config
+symlink_file "${CONFIG_SOURCE}/git/gitconfig" "${HOME}/.gitconfig" "gitconfig"
 
 echo ""
 echo -e "${GREEN}✓ Done!${NC}"
