@@ -37,12 +37,28 @@ install() {
 }
 
 # Packages
+install brave-browser
 install 1password
 install asdf
 install neovim
 install ghostty
+
 install tmux
-install brave-browser
+# Install tmux plugin manager (tpm)
+if [ ! -d "$HOME/.config/tmux/plugins/tpm" ]; then
+  echo "Installing tmux plugin manager..."
+  git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm" || fail "Failed to clone tpm"
+  ok "tmux plugin manager installed"
+else
+  ok "tmux plugin manager already installed"
+fi
+
+# Install tmux plugins
+if [ -d "$HOME/.config/tmux/plugins/tpm" ]; then
+  echo "Installing tmux plugins..."
+  "$HOME/.config/tmux/plugins/tpm/bin/install_plugins" || fail "Failed to install tmux plugins"
+  ok "tmux plugins installed"
+fi
 
 # Add asdf to .zshrc PATH
 if ! grep -q 'ASDF_DATA_DIR.*shims' "$HOME/.zshrc" 2>/dev/null; then
@@ -72,22 +88,6 @@ if command -v asdf >/dev/null 2>&1; then
   ok "pnpm installed"
 else
   fail "asdf not found, skipping Node.js installation"
-fi
-
-# Install tmux plugin manager (tpm)
-if [ ! -d "$HOME/.config/tmux/plugins/tpm" ]; then
-  echo "Installing tmux plugin manager..."
-  git clone https://github.com/tmux-plugins/tpm "$HOME/.config/tmux/plugins/tpm" || fail "Failed to clone tpm"
-  ok "tmux plugin manager installed"
-else
-  ok "tmux plugin manager already installed"
-fi
-
-# Install tmux plugins
-if [ -d "$HOME/.config/tmux/plugins/tpm" ]; then
-  echo "Installing tmux plugins..."
-  "$HOME/.config/tmux/plugins/tpm/bin/install_plugins" || fail "Failed to install tmux plugins"
-  ok "tmux plugins installed"
 fi
 
 ok "Done"
