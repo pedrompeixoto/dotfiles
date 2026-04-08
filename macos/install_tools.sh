@@ -39,9 +39,12 @@ install() {
 # Packages
 install brave-browser
 install 1password
-install asdf
+install mise
 install neovim
 install ghostty
+install tree-sitter
+install gh
+install fd
 
 install tmux
 # Install tmux plugin manager (tpm)
@@ -71,23 +74,17 @@ fi
 # Add asdf to current session PATH
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
-# Install Node.js via asdf
-if command -v asdf >/dev/null 2>&1; then
-  if ! asdf plugin list | grep -q "^nodejs"; then
-    echo "Adding asdf nodejs plugin..."
-    asdf plugin add nodejs || fail "Failed to add nodejs plugin"
-  fi
-  echo "Installing Node.js with asdf..."
-  asdf install nodejs latest || fail "Failed to install nodejs"
-  asdf set --home nodejs latest || fail "Failed to set global nodejs version"
-  ok "Node.js installed via asdf"
-
-  # Install pnpm
-  echo "Installing pnpm..."
-  npm install -g pnpm || fail "Failed to install pnpm"
-  ok "pnpm installed"
+# Install Node.js via mise
+if mise which node >/dev/null 2>&1; then
+  ok "Node.js already installed via mise"
 else
-  fail "asdf not found, skipping Node.js installation"
+  echo "Installing Node.js via mise..."
+  if mise install node@lts; then
+    mise use --global node@lts
+    ok "Node.js installed via mise"
+  else
+    fail "Node.js install via mise failed"
+  fi
 fi
 
 ok "Done"
