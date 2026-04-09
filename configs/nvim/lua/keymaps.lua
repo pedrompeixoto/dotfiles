@@ -42,12 +42,6 @@ keymap.set("n", "<C-A-k>", "<C-w>-", { desc = "Decrease split height" })
 keymap.set("n", "<C-A-j>", "<C-w>+", { desc = "Increase split height" })
 
 -- ============================================================================
--- Terminal
--- ============================================================================
-keymap.set("n", "<leader>tt", function() Snacks.terminal(nil, { win = { position = "float" } }) end, { desc = "Toggle floating terminal" })
-keymap.set("n", "<leader>tT", function() Snacks.terminal(nil, { win = { position = "bottom" } }) end, { desc = "Toggle bottom terminal" })
-
--- ============================================================================
 -- Text Editing
 -- ============================================================================
 keymap.set("v", "<S-j>", ":m '>+1<CR>gv", { desc = "Move lines down" })
