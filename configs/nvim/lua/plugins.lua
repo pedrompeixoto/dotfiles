@@ -20,6 +20,8 @@ require("lazy").setup({
             "neovim/nvim-lspconfig",
         },
     },
+    { 'L3MON4D3/LuaSnip' },
+    { 'rafamadriz/friendly-snippets' },
     {
         "saghen/blink.cmp",
         version = "*",
@@ -189,7 +191,7 @@ require("lazy").setup({
                         { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
                     Snacks.toggle.treesitter():map("<leader>uT")
                     Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map(
-                    "<leader>ub")
+                        "<leader>ub")
                     Snacks.toggle.inlay_hints():map("<leader>uh")
                     Snacks.toggle.indent():map("<leader>ug")
                     Snacks.toggle.dim():map("<leader>uD")
@@ -252,7 +254,11 @@ require("lazy").setup({
         ft = "markdown",
         opts = {},
     },
-    { 'nvim-mini/mini.nvim', version = '*', init = function ()
-        require('mini.icons').setup()
-    end },
+    {
+        'nvim-mini/mini.nvim',
+        version = '*',
+        init = function()
+            require('mini.icons').setup()
+        end
+    },
 })
