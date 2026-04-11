@@ -11,9 +11,7 @@ keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode with jk" })
 -- Leader Commands
 -- ============================================================================
 -- Format & Diagnostics
-keymap.set("n", "<leader>f", function()
-    require("conform").format({ async = true, lsp_format = "fallback" })
-end, { desc = "Format file with conform" })
+keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format file with LSP" })
 keymap.set("n", "<leader>d", vim.diagnostic.open_float, { desc = "Diagnostics" })
 
 -- Search & Replace
