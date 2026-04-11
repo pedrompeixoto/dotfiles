@@ -62,14 +62,7 @@ require("lazy").setup({
             scope = { enabled = true },
             scroll = { enabled = true },
             terminal = { enabled = true },
-            image = {
-                enabled = true,
-                doc = {
-                    enabled = true,
-                    inline = true,
-                    filetypes = { "markdown" },
-                },
-            },
+            image = { enabled = true, },
             statuscolumn = { enabled = true },
             words = { enabled = true },
             styles = {
@@ -272,12 +265,6 @@ require("lazy").setup({
     {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = "markdown",
-        dependencies = { "folke/snacks.nvim" },
-        opts = {
-            image = {
-                enabled = true,
-            },
-        },
     },
     {
         'nvim-mini/mini.nvim',
