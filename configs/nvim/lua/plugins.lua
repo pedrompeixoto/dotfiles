@@ -11,14 +11,20 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     {
         "mason-org/mason-lspconfig.nvim",
-        opts = {
-            ensure_installed = { "lua_ls", "ts_ls", "svelte", "eslint", "oxfmt", "oxlint" },
-            automatic_enable = true,
-        },
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
+            "saghen/blink.cmp",
         },
+        config = function()
+            vim.lsp.config('*', {
+                capabilities = require('blink.cmp').get_lsp_capabilities(),
+            })
+            require('mason-lspconfig').setup({
+                ensure_installed = { "lua_ls", "ts_ls", "svelte", "eslint", "oxfmt", "oxlint" },
+                automatic_enable = true,
+            })
+        end,
     },
     { 'L3MON4D3/LuaSnip' },
     { 'rafamadriz/friendly-snippets' },
@@ -56,6 +62,14 @@ require("lazy").setup({
             scope = { enabled = true },
             scroll = { enabled = true },
             terminal = { enabled = true },
+            image = {
+                enabled = true,
+                doc = {
+                    enabled = true,
+                    inline = true,
+                    filetypes = { "markdown" },
+                },
+            },
             statuscolumn = { enabled = true },
             words = { enabled = true },
             styles = {
@@ -70,7 +84,6 @@ require("lazy").setup({
             { "<leader>,",       function() Snacks.picker.buffers() end,                                  desc = "Buffers" },
             { "<leader>/",       function() Snacks.picker.grep() end,                                     desc = "Grep" },
             { "<leader>:",       function() Snacks.picker.command_history() end,                          desc = "Command History" },
-            { "<leader>n",       function() Snacks.picker.notifications() end,                            desc = "Notification History" },
             { "<leader>e",       function() Snacks.explorer() end,                                        desc = "File Explorer" },
             -- find
             { "<leader>fb",      function() Snacks.picker.buffers() end,                                  desc = "Buffers" },
@@ -228,6 +241,13 @@ require("lazy").setup({
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
+        opts = {
+            options = {
+                theme = "tokyonight",
+                component_separators = { left = '', right = '|' },
+                section_separators = { left = '', right = '' },
+            },
+        },
     },
     {
         "lewis6991/gitsigns.nvim",
@@ -252,7 +272,12 @@ require("lazy").setup({
     {
         "MeanderingProgrammer/render-markdown.nvim",
         ft = "markdown",
-        opts = {},
+        dependencies = { "folke/snacks.nvim" },
+        opts = {
+            image = {
+                enabled = true,
+            },
+        },
     },
     {
         'nvim-mini/mini.nvim',
