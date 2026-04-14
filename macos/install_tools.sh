@@ -45,6 +45,7 @@ install ghostty
 install tree-sitter
 install gh
 install fd
+install bitwarden
 
 install tmux
 # Install tmux plugin manager (tpm)
