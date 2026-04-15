@@ -232,15 +232,11 @@ require("lazy").setup({
         end,
     },
     {
-        "nvim-lualine/lualine.nvim",
-        event = "VeryLazy",
-        opts = {
-            options = {
-                theme = "tokyonight",
-                component_separators = { left = '', right = '|' },
-                section_separators = { left = '', right = '' },
-            },
-        },
+        'nvim-mini/mini.statusline',
+        version = false,
+        config = function()
+            require('mini.statusline').setup()
+        end
     },
     {
         "lewis6991/gitsigns.nvim",
