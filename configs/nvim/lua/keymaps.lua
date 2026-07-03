@@ -56,9 +56,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- ============================================================================
+-- Config
+-- ============================================================================
+keymap.set("n", "<leader>sv", function()
+    for name, _ in pairs(package.loaded) do
+        if name:match("^plugins") or name:match("^keymaps") or name:match("^utils") then
+            package.loaded[name] = nil
+        end
+    end
+    dofile(vim.fn.stdpath("config") .. "/init.lua")
+    vim.notify("Config reloaded", vim.log.levels.INFO)
+end, { desc = "Reload config" })
+
+-- ============================================================================
 -- File Switching
 -- ============================================================================
 keymap.set("n", "<leader>tt", utils.toggle_test_file, { desc = "Toggle source/test file" })
+keymap.set("n", "<leader>tr", utils.run_test_file, { desc = "Run test file" })
 
 -- ============================================================================
 -- Project-Specific
