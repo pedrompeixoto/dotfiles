@@ -273,4 +273,45 @@ require("lazy").setup({
             require('mini.icons').setup()
         end
     },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "marilari88/neotest-vitest",
+            "nvim-neotest/neotest-jest",
+        },
+        config = function()
+            require("neotest").setup({
+                adapters = {
+                    require("neotest-vitest"),
+                    require("neotest-jest")({
+                        jestCommand = "npx jest",
+                    }),
+                },
+            })
+        end,
+        keys = {
+            { "<leader>tr", function() require("neotest").run.run() end,                                                     desc = "Run nearest test" },
+            { "<leader>tR", function() require("neotest").run.run(vim.fn.expand("%")) end,                                   desc = "Run test file" },
+            { "<leader>tC", function() require("neotest").run.run({ vim.fn.expand("%"), extra_args = { "--coverage" } }) end, desc = "Run file with coverage" },
+            { "<leader>to", function() require("neotest").output.open({ enter = true }) end,                                 desc = "Test output" },
+            { "<leader>tO", function() require("neotest").output_panel.toggle() end,                                         desc = "Toggle output panel" },
+            { "<leader>ts", function() require("neotest").summary.toggle() end,                                              desc = "Test summary" },
+        },
+    },
+    {
+        "andythigpen/nvim-coverage",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        opts = {
+            auto_reload = true,
+            lang = {
+                javascript = { coverage_file = vim.fn.getcwd() .. "/coverage/lcov.info" },
+                typescript = { coverage_file = vim.fn.getcwd() .. "/coverage/lcov.info" },
+            },
+        },
+        keys = {
+            { "<leader>tc", function() require("coverage").toggle() end, desc = "Toggle coverage" },
+        },
+    },
 })

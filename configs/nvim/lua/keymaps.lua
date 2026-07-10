@@ -72,7 +72,6 @@ end, { desc = "Reload config" })
 -- File Switching
 -- ============================================================================
 keymap.set("n", "<leader>tt", utils.toggle_test_file, { desc = "Toggle source/test file" })
-keymap.set("n", "<leader>tr", utils.run_test_file, { desc = "Run test file" })
 
 -- ============================================================================
 -- Project-Specific
