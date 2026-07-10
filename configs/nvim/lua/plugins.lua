@@ -294,6 +294,7 @@ require("lazy").setup({
         keys = {
             { "<leader>tr", function() require("neotest").run.run() end,                                                     desc = "Run nearest test" },
             { "<leader>tR", function() require("neotest").run.run(vim.fn.expand("%")) end,                                   desc = "Run test file" },
+            { "<leader>tA", function() require("neotest").run.run(vim.fn.getcwd()) end,                                      desc = "Run entire suite" },
             { "<leader>tC", function() require("neotest").run.run({ vim.fn.expand("%"), extra_args = { "--coverage" } }) end, desc = "Run file with coverage" },
             { "<leader>to", function() require("neotest").output.open({ enter = true }) end,                                 desc = "Test output" },
             { "<leader>tO", function() require("neotest").output_panel.toggle() end,                                         desc = "Toggle output panel" },
