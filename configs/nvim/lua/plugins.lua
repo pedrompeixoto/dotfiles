@@ -311,7 +311,8 @@ require("lazy").setup({
             },
         },
         keys = {
-            { "<leader>tc", function() require("coverage").toggle() end, desc = "Toggle coverage" },
+            { "<leader>tc", function() require("coverage").toggle() end,  desc = "Toggle coverage" },
+            { "<leader>tv", function() require("coverage").summary() end, desc = "Coverage report" },
         },
     },
 })
