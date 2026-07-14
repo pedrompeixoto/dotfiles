@@ -43,9 +43,26 @@ keymap.set("n", "<C-A-j>", "<C-w>+", { desc = "Increase split height" })
 keymap.set("v", "<S-j>", ":m '>+1<CR>gv", { desc = "Move lines down" })
 keymap.set("v", "<S-k>", ":m '<-2<CR>gv", { desc = "Move lines up" })
 
+-- Keep the cursor centered while scrolling / searching
+keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center" })
+keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center" })
+keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })
+keymap.set("n", "N", "Nzzzv", { desc = "Prev search result and center" })
+
+-- ============================================================================
+-- Buffers
+-- ============================================================================
+keymap.set("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+keymap.set("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Prev buffer" })
+
 -- ============================================================================
 -- LSP
 -- ============================================================================
+keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+    { desc = "Next diagnostic" })
+keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+    { desc = "Prev diagnostic" })
+
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local opts = { noremap = true, silent = true, buffer = args.buf }

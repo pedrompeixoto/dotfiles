@@ -16,6 +16,15 @@ vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 400
+vim.opt.mouse = "a"
+vim.opt.pumheight = 10
+vim.opt.confirm = true
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
 
 vim.schedule(function()
     vim.opt.clipboard = "unnamedplus"

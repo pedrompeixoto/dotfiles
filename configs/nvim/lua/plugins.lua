@@ -40,7 +40,45 @@ require("lazy").setup({
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
             },
+            completion = {
+                menu = {
+                    -- keep the menu closed by default so NeoCodeium's ghost text
+                    -- isn't fighting the cmp popup for screen space
+                    auto_show = function(ctx)
+                        return ctx.mode ~= "default"
+                    end,
+                },
+            },
         },
+    },
+    {
+        "monkoose/neocodeium",
+        event = "VeryLazy",
+        config = function()
+            local neocodeium = require("neocodeium")
+            local blink = require("blink.cmp")
+
+            neocodeium.setup({
+                filter = function()
+                    return not blink.is_visible()
+                end,
+            })
+
+            -- close the AI ghost text as soon as the cmp menu takes over
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "BlinkCmpMenuOpen",
+                callback = function() neocodeium.clear() end,
+            })
+
+            local keymap = vim.keymap
+            keymap.set("i", "<A-f>", neocodeium.accept, { desc = "Accept AI suggestion" })
+            keymap.set("i", "<A-w>", neocodeium.accept_word, { desc = "Accept AI suggestion word" })
+            keymap.set("i", "<A-a>", neocodeium.accept_line, { desc = "Accept AI suggestion line" })
+            keymap.set("i", "<A-e>", function() neocodeium.cycle_or_complete() end, { desc = "Cycle AI suggestions" })
+            keymap.set("i", "<A-r>", function() neocodeium.cycle_or_complete(-1) end,
+                { desc = "Cycle AI suggestions (reverse)" })
+            keymap.set("i", "<A-c>", neocodeium.clear, { desc = "Clear AI suggestion" })
+        end,
     },
     {
         "folke/snacks.nvim",
