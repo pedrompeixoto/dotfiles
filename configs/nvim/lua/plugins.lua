@@ -78,6 +78,7 @@ require("lazy").setup({
             keymap.set("i", "<A-r>", function() neocodeium.cycle_or_complete(-1) end,
                 { desc = "Cycle AI suggestions (reverse)" })
             keymap.set("i", "<A-c>", neocodeium.clear, { desc = "Clear AI suggestion" })
+            keymap.set("n", "<leader>at", neocodeium.toggle, { desc = "Toggle AI suggestions" })
         end,
     },
     {
