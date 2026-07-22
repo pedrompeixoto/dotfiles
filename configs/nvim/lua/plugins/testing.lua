@@ -3,6 +3,7 @@ return {
         "nvim-neotest/neotest",
         dependencies = {
             "nvim-lua/plenary.nvim",
+            "nvim-neotest/nvim-nio",
             "nvim-treesitter/nvim-treesitter",
             "marilari88/neotest-vitest",
             "nvim-neotest/neotest-jest",
@@ -28,7 +29,8 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
         keys = {
-            { "<leader>tc", function() require("coverage").toggle() end, desc = "Toggle coverage" },
+            { "<leader>tc", function() require("coverage").load(true) end, desc = "Load & show coverage" },
+            { "<leader>tx", function() require("coverage").toggle() end, desc = "Toggle coverage signs" },
             { "<leader>tv", function() require("coverage").summary() end, desc = "Coverage report" },
         },
         opts = {
