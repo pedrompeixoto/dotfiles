@@ -9,6 +9,7 @@ Personal configuration files and setup scripts.
   - `tmux/` — Tmux configuration
   - `git/` — Git configuration
   - `ghostty/` — Ghostty terminal configuration
+  - `zed/` — Zed editor settings and keymap
 
 - **macos/** — macOS setup and installation scripts
   - `install.sh` — Unified installer with interactive menu (recommended)

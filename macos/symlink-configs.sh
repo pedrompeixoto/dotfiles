@@ -105,5 +105,11 @@ symlink_config "tmux"
 # Symlink git config
 symlink_file "${CONFIG_SOURCE}/git/gitconfig" "${HOME}/.gitconfig" "gitconfig"
 
+# Symlink zed config (individual files only — ~/.config/zed also holds
+# local app state like prompts/ and themes/ that shouldn't be symlinked)
+mkdir -p "${HOME}/.config/zed"
+symlink_file "${CONFIG_SOURCE}/zed/settings.json" "${HOME}/.config/zed/settings.json" "zed settings"
+symlink_file "${CONFIG_SOURCE}/zed/keymap.json" "${HOME}/.config/zed/keymap.json" "zed keymap"
+
 echo ""
 printf "%b✓ Done!%b\n" "$GREEN" "$NC"

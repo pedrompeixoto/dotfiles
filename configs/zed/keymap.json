@@ -1,0 +1,79 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      // "shift shift": "file_finder::Toggle"
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": "vim::NormalBefore"
+    },
+  },
+  {
+    // Leader-key (space) panels/pickers, mirroring the Snacks.nvim pickers
+    // from configs/nvim/lua/config/keymaps.lua
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space space": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space e": "project_panel::ToggleFocus",
+      "space ,": "tab_switcher::Toggle",
+      "space g g": "git_panel::ToggleFocus",
+
+      // Git actions, mirroring keymaps.lua's <leader>g* / Lazygit workflow.
+      // These open the Git Panel (native default: ctrl-shift-g) then send a
+      // key that's already correctly scoped inside it, the same chaining
+      // technique Zed's own default keymap uses for "z ." etc.
+      "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
+      "space g a": ["workspace::SendKeystrokes", "ctrl-shift-g shift-x"], // stage all changes
+      "space g p": ["workspace::SendKeystrokes", "ctrl-shift-g ctrl-g up"], // push
+      "space g shift-p": ["workspace::SendKeystrokes", "ctrl-shift-g ctrl-g down"], // pull
+      "space g f": ["workspace::SendKeystrokes", "ctrl-shift-g ctrl-g ctrl-g"], // fetch
+      "space s s": "outline::Toggle",
+      "space s shift-s": "project_symbols::Toggle",
+      "space c f": "editor::Format",
+      "space c d": "editor::Hover",
+      "ctrl-/": "terminal_panel::Toggle",
+
+      // Leader-based split navigation/creation (same actions as ctrl-w,
+      // mirroring keymaps.lua's <leader>hjkl / <leader>wv / <leader>ws)
+      "space h": "workspace::ActivatePaneLeft",
+      "space j": "workspace::ActivatePaneDown",
+      "space k": "workspace::ActivatePaneUp",
+      "space l": "workspace::ActivatePaneRight",
+      "space w v": "pane::SplitVertical",
+      "space w s": "pane::SplitHorizontal",
+
+      // Split resizing, mirroring keymaps.lua's <C-A-hjkl>
+      "ctrl-alt-h": "vim::ResizePaneLeft",
+      "ctrl-alt-l": "vim::ResizePaneRight",
+      "ctrl-alt-k": "vim::ResizePaneUp",
+      "ctrl-alt-j": "vim::ResizePaneDown",
+
+      // Keep search/scroll results centered, mirroring keymaps.lua's
+      // <C-d>zz / <C-u>zz / nzzzv / Nzzzv
+      "n": ["workspace::SendKeystrokes", "n z z"],
+      "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
+      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
+      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+    },
+  },
+  {
+    // Buffer switching on Shift-H/L, mirroring keymaps.lua's <S-h>/<S-l>,
+    // overriding vim's native window-top/bottom motion
+    "context": "VimControl && !menu",
+    "bindings": {
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+    },
+  },
+]
