@@ -15,7 +15,7 @@
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j k": "vim::NormalBefore"
+      "j k": "vim::NormalBefore",
     },
   },
   {
@@ -26,18 +26,23 @@
       "space space": "file_finder::Toggle",
       "space /": "pane::DeploySearch",
       "space e": "project_panel::ToggleFocus",
+      "space E": "workspace::ToggleLeftDock",
       "space ,": "tab_switcher::Toggle",
       "space g g": "git_panel::ToggleFocus",
+      "space G": "workspace::ToggleRightDock",
 
       // Git actions, mirroring keymaps.lua's <leader>g* / Lazygit workflow.
-      // These open the Git Panel (native default: ctrl-shift-g) then send a
-      // key that's already correctly scoped inside it, the same chaining
-      // technique Zed's own default keymap uses for "z ." etc.
+      // Stage/push/pull/fetch are bound straight to their git:: actions,
+      // which act on the repo directly and don't require Git Panel focus —
+      // so these never move focus away from the editor. Commit is the one
+      // exception: it needs a place to type the message, so it still opens
+      // the Git Panel and focuses the commit box.
       "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
-      "space g a": ["workspace::SendKeystrokes", "ctrl-shift-g shift-x"], // stage all changes
-      "space g p": ["workspace::SendKeystrokes", "ctrl-shift-g ctrl-g up"], // push
-      "space g shift-p": ["workspace::SendKeystrokes", "ctrl-shift-g ctrl-g down"], // pull
-      "space g f": ["workspace::SendKeystrokes", "ctrl-shift-g ctrl-g ctrl-g"], // fetch
+      "space g a": "git::ToggleStaged",
+      "space g A": "git::StageAll",
+      "space g p": "git::Push",
+      "space g shift-p": "git::Pull",
+      "space g f": "git::Fetch",
       "space s s": "outline::Toggle",
       "space s shift-s": "project_symbols::Toggle",
       "space c f": "editor::Format",
