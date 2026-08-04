@@ -105,6 +105,17 @@ symlink_config "tmux"
 # Symlink git config
 symlink_file "${CONFIG_SOURCE}/git/gitconfig" "${HOME}/.gitconfig" "gitconfig"
 
+# Per-machine git identity (untracked, never overwritten) — keeps work/personal
+# emails from clobbering each other when this shared dotfiles repo is synced
+# across machines.
+if [ ! -f "${HOME}/.gitconfig.local" ]; then
+    cat > "${HOME}/.gitconfig.local" <<'EOF'
+[user]
+	email = your-email-for-this-machine@example.com
+EOF
+    printf "%b! Created %s with a placeholder email — edit it for this machine%b\n" "$YELLOW" "${HOME}/.gitconfig.local" "$NC"
+fi
+
 # Symlink zed config (individual files only — ~/.config/zed also holds
 # local app state like prompts/ and themes/ that shouldn't be symlinked)
 mkdir -p "${HOME}/.config/zed"
