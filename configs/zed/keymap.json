@@ -7,9 +7,14 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
+    // Also bind here (not just vim_mode == normal below), since that
+    // context only exists inside an editor buffer — with no file open
+    // there's no buffer, so space space would otherwise do nothing.
+    // Excludes Editor so it doesn't hijack the spacebar while typing
+    // (Editor is also used for search boxes, commit message, etc.).
+    "context": "Workspace && !Editor",
     "bindings": {
-      // "shift shift": "file_finder::Toggle"
+      "space space": "file_finder::Toggle",
     },
   },
   {
