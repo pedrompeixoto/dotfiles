@@ -70,6 +70,8 @@
       "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
+
+      "space c c": "agent::NewThread"
     },
   },
   {
