@@ -80,6 +80,12 @@
     },
   },
   {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "space c a": "agent::AddSelectionToThread"
+    },
+  },
+  {
     // Buffer switching on Shift-H/L, mirroring keymaps.lua's <S-h>/<S-l>,
     // overriding vim's native window-top/bottom motion
     "context": "VimControl && !menu",
