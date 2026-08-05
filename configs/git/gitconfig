@@ -1,6 +1,11 @@
 # This is Git's per-user configuration file.
 [user]
 name = Pedro Peixoto
+	signingkey = 7D80A2E6351B4463
 
 [include]
 path = ~/.gitconfig.local
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
