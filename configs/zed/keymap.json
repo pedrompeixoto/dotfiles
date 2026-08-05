@@ -7,9 +7,36 @@
 // from the command palette.
 [
   {
-    "context": "Workspace && !Editor",
+    // !GitPanel: GitPanel binds bare "space" to git::ToggleStaged; if these
+    // multi-key "space ..." sequences stayed reachable from there too, Zed
+    // can't tell space-alone from the start of a chord and delays ~1s before
+    // firing ToggleStaged (see https://zed.dev/docs/key-bindings#conflicts).
+    "context": "Workspace && !Editor && !GitPanel",
     "bindings": {
       "space space": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space ,": "tab_switcher::Toggle",
+      "space g g": "git_panel::Toggle",
+      "space e": "project_panel::ToggleFocus",
+      "space E": "workspace::ToggleLeftDock",
+      "space G": "workspace::ToggleRightDock",
+
+      "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
+      "space g a": "git::ToggleStaged",
+      "space g A": "git::StageAll",
+      "space g p": "git::Push",
+      "space g shift-p": "git::Pull",
+      "space g f": "git::Fetch",
+      "ctrl-/": "terminal_panel::Toggle",
+
+      "space h": "workspace::ActivatePaneLeft",
+      "space j": "workspace::ActivatePaneDown",
+      "space k": "workspace::ActivatePaneUp",
+      "space l": "workspace::ActivatePaneRight",
+      "space w v": "pane::SplitVertical",
+      "space w s": "pane::SplitHorizontal",
+
+      "space c c": "agent::NewThread"
     },
   },
   {
@@ -26,7 +53,7 @@
       "space e": "project_panel::ToggleFocus",
       "space E": "workspace::ToggleLeftDock",
       "space ,": "tab_switcher::Toggle",
-      "space g g": "git_panel::ToggleFocus",
+      "space g g": "git_panel::Toggle",
       "space G": "workspace::ToggleRightDock",
 
       "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
