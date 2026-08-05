@@ -7,11 +7,6 @@
 // from the command palette.
 [
   {
-    // Also bind here (not just vim_mode == normal below), since that
-    // context only exists inside an editor buffer — with no file open
-    // there's no buffer, so space space would otherwise do nothing.
-    // Excludes Editor so it doesn't hijack the spacebar while typing
-    // (Editor is also used for search boxes, commit message, etc.).
     "context": "Workspace && !Editor",
     "bindings": {
       "space space": "file_finder::Toggle",
@@ -24,8 +19,6 @@
     },
   },
   {
-    // Leader-key (space) panels/pickers, mirroring the Snacks.nvim pickers
-    // from configs/nvim/lua/config/keymaps.lua
     "context": "vim_mode == normal",
     "bindings": {
       "space space": "file_finder::Toggle",
@@ -36,12 +29,6 @@
       "space g g": "git_panel::ToggleFocus",
       "space G": "workspace::ToggleRightDock",
 
-      // Git actions, mirroring keymaps.lua's <leader>g* / Lazygit workflow.
-      // Stage/push/pull/fetch are bound straight to their git:: actions,
-      // which act on the repo directly and don't require Git Panel focus —
-      // so these never move focus away from the editor. Commit is the one
-      // exception: it needs a place to type the message, so it still opens
-      // the Git Panel and focuses the commit box.
       "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
       "space g a": "git::ToggleStaged",
       "space g A": "git::StageAll",
@@ -54,8 +41,6 @@
       "space c d": "editor::Hover",
       "ctrl-/": "terminal_panel::Toggle",
 
-      // Leader-based split navigation/creation (same actions as ctrl-w,
-      // mirroring keymaps.lua's <leader>hjkl / <leader>wv / <leader>ws)
       "space h": "workspace::ActivatePaneLeft",
       "space j": "workspace::ActivatePaneDown",
       "space k": "workspace::ActivatePaneUp",
@@ -63,14 +48,11 @@
       "space w v": "pane::SplitVertical",
       "space w s": "pane::SplitHorizontal",
 
-      // Split resizing, mirroring keymaps.lua's <C-A-hjkl>
       "ctrl-alt-h": "vim::ResizePaneLeft",
       "ctrl-alt-l": "vim::ResizePaneRight",
       "ctrl-alt-k": "vim::ResizePaneUp",
       "ctrl-alt-j": "vim::ResizePaneDown",
 
-      // Keep search/scroll results centered, mirroring keymaps.lua's
-      // <C-d>zz / <C-u>zz / nzzzv / Nzzzv
       "n": ["workspace::SendKeystrokes", "n z z"],
       "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
