@@ -18,8 +18,8 @@
       "space ,": "tab_switcher::Toggle",
       "space g g": "git_panel::Toggle",
       "space e": "project_panel::ToggleFocus",
-      "space E": "workspace::ToggleLeftDock",
-      "space G": "workspace::ToggleRightDock",
+      "space t h": "workspace::ToggleLeftDock",
+      "space t l": "workspace::ToggleRightDock",
 
       "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
       "space g a": "git::ToggleStaged",
@@ -36,7 +36,8 @@
       "space w v": "pane::SplitVertical",
       "space w s": "pane::SplitHorizontal",
 
-      "space c c": "agent::NewThread"
+      "space c c": "agent::FocusAgent",
+      "space c n": "agent::NewThread"
     },
   },
   {
@@ -51,10 +52,10 @@
       "space space": "file_finder::Toggle",
       "space /": "pane::DeploySearch",
       "space e": "project_panel::ToggleFocus",
-      "space E": "workspace::ToggleLeftDock",
+      "space t h": "workspace::ToggleLeftDock",
       "space ,": "tab_switcher::Toggle",
       "space g g": "git_panel::Toggle",
-      "space G": "workspace::ToggleRightDock",
+      "space t l": "workspace::ToggleRightDock",
 
       "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
       "space g a": "git::ToggleStaged",
@@ -85,7 +86,8 @@
       "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
       "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
 
-      "space c c": "agent::NewThread"
+      "space c c": "agent::FocusAgent",
+      "space c n": "agent::NewThread"
     },
   },
   {
