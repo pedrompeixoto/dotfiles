@@ -63,6 +63,7 @@
       "space g p": "git::Push",
       "space g shift-p": "git::Pull",
       "space g f": "git::Fetch",
+      "space g b": "git::CheckoutBranch",
       "space s s": "outline::Toggle",
       "space s shift-s": "project_symbols::Toggle",
       "space c f": "editor::Format",

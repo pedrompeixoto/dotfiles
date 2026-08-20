@@ -32,7 +32,7 @@
       "default_config_options": {
         "mode": "plan",
         "effort": "high",
-        "model": "sonnet"
+        "model": "opus"
       },
       "type": "registry"
     }
