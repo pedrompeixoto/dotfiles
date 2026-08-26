@@ -7,40 +7,6 @@
 // from the command palette.
 [
   {
-    // !GitPanel: GitPanel binds bare "space" to git::ToggleStaged; if these
-    // multi-key "space ..." sequences stayed reachable from there too, Zed
-    // can't tell space-alone from the start of a chord and delays ~1s before
-    // firing ToggleStaged (see https://zed.dev/docs/key-bindings#conflicts).
-    "context": "Workspace && !Editor && !GitPanel",
-    "bindings": {
-      "space space": "file_finder::Toggle",
-      "space /": "pane::DeploySearch",
-      "space ,": "tab_switcher::Toggle",
-      "space g g": "git_panel::Toggle",
-      "space e": "project_panel::ToggleFocus",
-      "space t h": "workspace::ToggleLeftDock",
-      "space t l": "workspace::ToggleRightDock",
-
-      "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
-      "space g a": "git::ToggleStaged",
-      "space g A": "git::StageAll",
-      "space g p": "git::Push",
-      "space g shift-p": "git::Pull",
-      "space g f": "git::Fetch",
-      "ctrl-/": "terminal_panel::Toggle",
-
-      "space h": "workspace::ActivatePaneLeft",
-      "space j": "workspace::ActivatePaneDown",
-      "space k": "workspace::ActivatePaneUp",
-      "space l": "workspace::ActivatePaneRight",
-      "space w v": "pane::SplitVertical",
-      "space w s": "pane::SplitHorizontal",
-
-      "space c c": "agent::FocusAgent",
-      "space c n": "agent::NewThread"
-    },
-  },
-  {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       "j k": "vim::NormalBefore",
@@ -63,38 +29,32 @@
       "space g p": "git::Push",
       "space g shift-p": "git::Pull",
       "space g f": "git::Fetch",
-      "space g b": "git::CheckoutBranch",
-      "space s s": "outline::Toggle",
-      "space s shift-s": "project_symbols::Toggle",
-      "space c f": "editor::Format",
-      "space c d": "editor::Hover",
+      "space f": "editor::Format",
+      "space d": "editor::Hover",
       "ctrl-/": "terminal_panel::Toggle",
 
-      "space h": "workspace::ActivatePaneLeft",
-      "space j": "workspace::ActivatePaneDown",
-      "space k": "workspace::ActivatePaneUp",
-      "space l": "workspace::ActivatePaneRight",
-      "space w v": "pane::SplitVertical",
-      "space w s": "pane::SplitHorizontal",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-H": "pane::ActivatePreviousItem",
+      "ctrl-L": "pane::ActivateNextItem",
+      "space v": "pane::SplitVertical",
+      "space s": "pane::SplitHorizontal",
 
       "ctrl-alt-h": "vim::ResizePaneLeft",
       "ctrl-alt-l": "vim::ResizePaneRight",
       "ctrl-alt-k": "vim::ResizePaneUp",
       "ctrl-alt-j": "vim::ResizePaneDown",
 
-      "n": ["workspace::SendKeystrokes", "n z z"],
-      "shift-n": ["workspace::SendKeystrokes", "shift-n z z"],
-      "ctrl-d": ["workspace::SendKeystrokes", "ctrl-d z z"],
-      "ctrl-u": ["workspace::SendKeystrokes", "ctrl-u z z"],
-
       "space c c": "agent::FocusAgent",
-      "space c n": "agent::NewThread"
+      "space c n": "agent::NewThread",
     },
   },
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "space c a": "agent::AddSelectionToThread"
+      "space c a": "agent::AddSelectionToThread",
     },
   },
   {
