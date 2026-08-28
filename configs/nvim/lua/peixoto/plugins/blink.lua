@@ -9,7 +9,12 @@ return {
     end,
 
     opts = {
-        keymap = { preset = 'default' },
+        keymap = {
+            preset = "default",
+
+            ["<C-j>"] = { "select_next", "fallback" },
+            ["<C-k>"] = { "select_prev", "fallback" },
+        },
         completion = { documentation = { auto_show = false } },
         sources = { default = { 'lsp', 'path', 'snippets', 'buffer' } },
         fuzzy = { implementation = "rust" }
