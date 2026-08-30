@@ -40,9 +40,9 @@
   "agent_servers": {
     "claude-acp": {
       "default_config_options": {
-        "mode": "plan",
+        "mode": "default",
         "effort": "high",
-        "model": "opus"
+        "model": "sonnet"
       },
       "type": "registry"
     }

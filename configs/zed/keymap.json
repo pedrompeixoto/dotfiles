@@ -1,51 +1,37 @@
-// Zed keymap
-//
-// Mirrors configs/nvim — every binding here corresponds to one the nvim config
-// actually sets. Add here only after adding it there.
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
-    // blink.cmp's <C-j>/<C-k> select_next/select_prev inside the completion menu
     "context": "Editor && showing_completions",
     "bindings": {
       "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuPrev",
+      "ctrl-k": "editor::ContextMenuPrevious",
     },
   },
   {
     "context": "vim_mode == normal",
     "bindings": {
-      // snacks.picker
-      "space space": "file_finder::Toggle", // <leader><space> Smart Find Files
-      "space /": "pane::DeploySearch", // <leader>/ Grep
-      "space g b": "git::CheckoutBranch", // <leader>gb Git Branches
+      "space space": "file_finder::Toggle",
+      "space /": "pane::DeploySearch",
+      "space g b": "git::CheckoutBranch",
 
-      "space d": "editor::Hover", // <leader>d Show line diagnostics
-      "space f": "editor::Format", // <leader>f conform format
+      "space d": "editor::Hover",
+      "space f": "editor::Format",
 
-      // splits — SplitRight/SplitDown match vim's :vsplit / :split
-      "space s v": "pane::SplitRight", // <leader>sv Vertical split
-      "space s h": "pane::SplitDown", // <leader>sh Horizontal split
+      "space s v": "pane::SplitRight",
+      "space s h": "pane::SplitDown",
 
-      "ctrl-h": "workspace::ActivatePaneLeft", // <C-h> Go left split
-      "ctrl-j": "workspace::ActivatePaneDown", // <C-j> Go lower split
-      "ctrl-k": "workspace::ActivatePaneUp", // <C-k> Go upper split
-      "ctrl-l": "workspace::ActivatePaneRight", // <C-l> Go right split
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
 
-      "ctrl-alt-h": "vim::ResizePaneLeft", // <C-A-h> Resize left
-      "ctrl-alt-l": "vim::ResizePaneRight", // <C-A-l> Resize right
-      "ctrl-alt-j": "vim::ResizePaneDown", // <C-A-j> Resize down
-      "ctrl-alt-k": "vim::ResizePaneUp", // <C-A-k> Resize up
+      "ctrl-alt-h": "vim::ResizePaneLeft",
+      "ctrl-alt-l": "vim::ResizePaneRight",
+      "ctrl-alt-j": "vim::ResizePaneDown",
+      "ctrl-alt-k": "vim::ResizePaneUp",
 
-      // buffer cycling — as in nvim, this shadows <C-i> jump-forward
-      "tab": "pane::ActivateNextItem", // <Tab> Next buffer
-      "shift-tab": "pane::ActivatePreviousItem", // <S-Tab> Previous buffer
+      "tab": "pane::ActivateNextItem",
+      "shift-tab": "pane::ActivatePreviousItem",
 
-      // Neovim 0.11 built-in LSP defaults (K, gd, ]d/[d are already Zed vim defaults)
       "g r n": "editor::Rename",
       "g r a": "editor::ToggleCodeActions",
       "g r r": "editor::FindAllReferences",
@@ -57,7 +43,7 @@
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "space f": "editor::Format", // <leader>f conform format range
+      "space f": "editor::Format",
       "g r a": "editor::ToggleCodeActions",
     },
   },
