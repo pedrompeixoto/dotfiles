@@ -7,8 +7,18 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "cursor_blink": false,
-  "relative_line_numbers": "enabled",
+  // Editor behaviour mirroring configs/nvim/lua/peixoto/core/options.lua
+  "relative_line_numbers": true, // nu + relativenumber
+  "cursor_blink": false, // guicursor = ""
+  "cursor_shape": "block", // guicursor = ""
+  "tab_size": 4, // tabstop / softtabstop / shiftwidth = 4
+  "hard_tabs": false, // expandtab
+  "soft_wrap": "none", // wrap = false
+  "show_wrap_guides": false, // colorcolumn = "0"
+  "format_on_save": "off", // conform has no format-on-save
+  "vim": {
+    "use_system_clipboard": "always" // clipboard:append("unnamedplus")
+  },
   "scrollbar": {
     "show": "never"
   },
@@ -102,4 +112,33 @@
     }
   },
 
+  // Mirrors conform's formatters_by_ft: javascript/typescript -> oxfmt, prettier.
+  // conform resolves oxfmt from node_modules/.bin and picks the FIRST available
+  // formatter; Zed runs the array in SEQUENCE and has no "first available" mode,
+  // so in a project without a local oxfmt this errors where nvim silently uses
+  // prettier alone. jsx/tsx are absent from conform's map, so JSX/TSX are untouched.
+  "languages": {
+    "JavaScript": {
+      "formatter": [
+        {
+          "external": {
+            "command": "./node_modules/.bin/oxfmt",
+            "arguments": ["--stdin-filepath", "{buffer_path}"]
+          }
+        },
+        "prettier"
+      ]
+    },
+    "TypeScript": {
+      "formatter": [
+        {
+          "external": {
+            "command": "./node_modules/.bin/oxfmt",
+            "arguments": ["--stdin-filepath", "{buffer_path}"]
+          }
+        },
+        "prettier"
+      ]
+    }
+  }
 }

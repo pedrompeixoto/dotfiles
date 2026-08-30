@@ -1,69 +1,64 @@
 // Zed keymap
 //
+// Mirrors configs/nvim — every binding here corresponds to one the nvim config
+// actually sets. Add here only after adding it there.
+//
 // For information on binding keys, see the Zed
 // documentation: https://zed.dev/docs/key-bindings
-//
 // To see the default key bindings run `zed: open default keymap`
 // from the command palette.
 [
   {
-    "context": "Editor && vim_mode == insert",
+    // blink.cmp's <C-j>/<C-k> select_next/select_prev inside the completion menu
+    "context": "Editor && showing_completions",
     "bindings": {
-      "j k": "vim::NormalBefore",
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrev",
     },
   },
   {
     "context": "vim_mode == normal",
     "bindings": {
-      "space space": "file_finder::Toggle",
-      "space /": "pane::DeploySearch",
-      "space e": "project_panel::ToggleFocus",
-      "space t h": "workspace::ToggleLeftDock",
-      "space ,": "tab_switcher::Toggle",
-      "space g g": "git_panel::Toggle",
-      "space t l": "workspace::ToggleRightDock",
+      // snacks.picker
+      "space space": "file_finder::Toggle", // <leader><space> Smart Find Files
+      "space /": "pane::DeploySearch", // <leader>/ Grep
+      "space g b": "git::CheckoutBranch", // <leader>gb Git Branches
 
-      "space g c": ["workspace::SendKeystrokes", "ctrl-shift-g i"], // focus commit message box — type it, then cmd-enter to commit (cmd-shift-enter to amend)
-      "space g a": "git::ToggleStaged",
-      "space g A": "git::StageAll",
-      "space g p": "git::Push",
-      "space g shift-p": "git::Pull",
-      "space g f": "git::Fetch",
-      "space f": "editor::Format",
-      "space d": "editor::Hover",
-      "ctrl-/": "terminal_panel::Toggle",
+      "space d": "editor::Hover", // <leader>d Show line diagnostics
+      "space f": "editor::Format", // <leader>f conform format
 
-      "ctrl-h": "workspace::ActivatePaneLeft",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-H": "pane::ActivatePreviousItem",
-      "ctrl-L": "pane::ActivateNextItem",
-      "space v": "pane::SplitVertical",
-      "space s": "pane::SplitHorizontal",
+      // splits — SplitRight/SplitDown match vim's :vsplit / :split
+      "space s v": "pane::SplitRight", // <leader>sv Vertical split
+      "space s h": "pane::SplitDown", // <leader>sh Horizontal split
 
-      "ctrl-alt-h": "vim::ResizePaneLeft",
-      "ctrl-alt-l": "vim::ResizePaneRight",
-      "ctrl-alt-k": "vim::ResizePaneUp",
-      "ctrl-alt-j": "vim::ResizePaneDown",
+      "ctrl-h": "workspace::ActivatePaneLeft", // <C-h> Go left split
+      "ctrl-j": "workspace::ActivatePaneDown", // <C-j> Go lower split
+      "ctrl-k": "workspace::ActivatePaneUp", // <C-k> Go upper split
+      "ctrl-l": "workspace::ActivatePaneRight", // <C-l> Go right split
 
-      "space c c": "agent::FocusAgent",
-      "space c n": "agent::NewThread",
+      "ctrl-alt-h": "vim::ResizePaneLeft", // <C-A-h> Resize left
+      "ctrl-alt-l": "vim::ResizePaneRight", // <C-A-l> Resize right
+      "ctrl-alt-j": "vim::ResizePaneDown", // <C-A-j> Resize down
+      "ctrl-alt-k": "vim::ResizePaneUp", // <C-A-k> Resize up
+
+      // buffer cycling — as in nvim, this shadows <C-i> jump-forward
+      "tab": "pane::ActivateNextItem", // <Tab> Next buffer
+      "shift-tab": "pane::ActivatePreviousItem", // <S-Tab> Previous buffer
+
+      // Neovim 0.11 built-in LSP defaults (K, gd, ]d/[d are already Zed vim defaults)
+      "g r n": "editor::Rename",
+      "g r a": "editor::ToggleCodeActions",
+      "g r r": "editor::FindAllReferences",
+      "g r i": "editor::GoToImplementation",
+      "g r t": "editor::GoToTypeDefinition",
+      "g shift-o": "outline::Toggle",
     },
   },
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "space c a": "agent::AddSelectionToThread",
-    },
-  },
-  {
-    // Buffer switching on Shift-H/L, mirroring keymaps.lua's <S-h>/<S-l>,
-    // overriding vim's native window-top/bottom motion
-    "context": "VimControl && !menu",
-    "bindings": {
-      "shift-h": "pane::ActivatePreviousItem",
-      "shift-l": "pane::ActivateNextItem",
+      "space f": "editor::Format", // <leader>f conform format range
+      "g r a": "editor::ToggleCodeActions",
     },
   },
 ]
